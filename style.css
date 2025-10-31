@@ -7,7 +7,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  animation: bgMove 12s ease-in-out infinite alternate;
+  animation: bgMove 6s ease-in-out infinite alternate;
   background: linear-gradient(120deg, #d7eaff, #b9d4ff, #d2e3ff);
   background-size: 200% 200%;
 }

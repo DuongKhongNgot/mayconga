@@ -1,115 +1,104 @@
-/* Font */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
-
-/* Gradient động */
+/* Background gradient moving */
 body {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-
-  background: linear-gradient(
-    120deg,
-    color(display-p3 0.9 0.95 1),
-    color(display-p3 0.75 0.82 1),
-    color(display-p3 0.70 0.78 1),
-    color(display-p3 0.82 0.9 1)
-  );
-
-  background-size: 200% 200%;
-  animation: gradientMove 8s ease infinite;
-
+  font-family: "Segoe UI", Arial, sans-serif;
+  margin: 0;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  margin: 0;
-  padding: 20px;
-  position: relative;
-  overflow: hidden;
+  align-items: center;
+  animation: bgMove 12s ease-in-out infinite alternate;
+  background: linear-gradient(120deg, #d7eaff, #b9d4ff, #d2e3ff);
+  background-size: 200% 200%;
 }
 
-/* ánh sáng glow nhẹ */
-body::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: radial-gradient(
-    circle at 25% 20%,
-    color(display-p3 1 1 1 / 0.4),
-    transparent 55%
-  );
-  mix-blend-mode: screen;
-  filter: blur(20px);
+@keyframes bgMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
 }
 
-/* Title */
+/* Title with RGB glass */
 h1 {
   font-size: 26px;
   font-weight: 700;
   margin-bottom: 30px;
-  color: color(display-p3 0.12 0.18 0.35);
+  padding: 10px 30px; /* làm rộng hơn nút  */
+  text-align: center;
+
+  /* RGB gradient text */
+  background: linear-gradient(90deg,
+    #ff0000,#ff7a00,#ffee00,#00ff47,#00c8ff,#2b00ff,#ff00f5,#ff0000);
+  background-size: 400%;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: rgbTitle 6s linear infinite;
+
+  /* Glass effect */
+  border-radius: 18px;
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255,255,255,0.35);
+  display: inline-block;
+
+  /* subtle luxury glow */
+  box-shadow:
+    0 8px 18px rgba(0,0,0,0.10),
+    inset 0 1px 2px rgba(255,255,255,0.7);
 }
 
-/* Button container */
+@keyframes rgbTitle {
+  0% { background-position: 0%; }
+  100% { background-position: 400%; }
+}
+
+/* Buttons container */
 .button-container {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  width: 250px;
-  position: relative;
-  z-index: 2;
+  gap: 14px;
 }
 
-/* Liquid glass button */
+/* Liquid glass button style */
 .btn {
-  padding: 14px;
+  width: 200px;
+  padding: 15px 0;
+  text-align: center;
+  color: #0f172a;
+  text-decoration: none;
   font-size: 18px;
   font-weight: 600;
-  text-align: center;
   border-radius: 18px;
-  text-decoration: none;
-  color: color(display-p3 0.12 0.18 0.35);
-
-  background: rgba(255, 255, 255, 0.28);
-  backdrop-filter: blur(18px) saturate(180%);
-  -webkit-backdrop-filter: blur(18px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-
-  box-shadow:
-    0 8px 22px rgba(0, 0, 0, 0.15),
-    inset 0 1px 1.6px rgba(255, 255, 255, 0.6);
-
-  transition: 0.25s ease;
-
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid rgba(255,255,255,0.45);
+  animation: fadeUp 0.8s ease forwards;
   opacity: 0;
-  transform: translateY(12px);
-  animation: fadeUp .55s ease forwards;
+  transform: translateY(15px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.10),
+              inset 0 1px 2px rgba(255,255,255,0.7);
 }
 
-/* Hover */
-.btn:hover {
-  transform: translateY(-3px) scale(1.04);
-  background: rgba(255, 255, 255, 0.35);
-  box-shadow:
-    0 12px 26px rgba(0, 0, 0, 0.2),
-    inset 0 1px 2px rgba(255, 255, 255, 0.75);
-}
+/* Fade stagger buttons */
+.btn:nth-child(1) { animation-delay: 0.15s; }
+.btn:nth-child(2) { animation-delay: 0.30s; }
+.btn:nth-child(3) { animation-delay: 0.45s; }
+.btn:nth-child(4) { animation-delay: 0.60s; }
+.btn:nth-child(5) { animation-delay: 0.75s; }
 
-/* Active click */
-.btn:active {
-  transform: scale(0.96);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.18);
-}
-
-/* Fade animation each button */
 @keyframes fadeUp {
-  0% { opacity: 0; transform: translateY(15px); }
-  100% { opacity: 1; transform: translateY(0); }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Gradient movement */
-@keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+/* Hover effect */
+.btn:hover {
+  transform: translateY(-4px);
+  background: rgba(255,255,255,0.32);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.14),
+              inset 0 1px 2px rgba(255,255,255,0.9);
+  transition: 0.2s;
 }

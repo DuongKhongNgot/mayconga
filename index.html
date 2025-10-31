@@ -42,22 +42,49 @@
       transition: 0.2s;
       text-decoration: none;
       box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+
+      /* ANIMATION */
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.6s ease forwards;
     }
 
     .btn:hover {
       background-color: #2563eb;
       transform: translateY(-2px);
     }
+
+    /* Keyframes cho hiệu ứng xuất hiện */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
   </style>
 </head>
 <body>
-  <h1>GIữa Kì I</h1>
+  <h1>Học Vẹt Giữa Kì I</h1>
 
   <div class="button-container">
-    <a href="https://azota.vn/de-thi/geqfi0" class="btn" target="_blank">TN Địa</a>
-    <a href="https://azota.vn/de-thi/nbwdxa" class="btn" target="_blank">GDKT&PL</a>
-    <a href="https://azota.vn/de-thi/mv3ybs" class="btn" target="_blank">Địa D/S</a>
-    <a href="https://azota.vn/de-thi/flfoco" class="btn" target="_blank">Vli</a>
+    <a href="https://azota.vn/de-thi/geqfi0" class="btn" target="_blank" rel="noopener noreferrer">TN Địa</a>
+    <a href="https://azota.vn/de-thi/nbwdxa" class="btn" target="_blank" rel="noopener noreferrer">GDKT&PL</a>
+    <a href="https://azota.vn/de-thi/mv3ybs" class="btn" target="_blank" rel="noopener noreferrer">Địa D/S</a>
+    <a href="https://azota.vn/de-thi/flfoco" class="btn" target="_blank" rel="noopener noreferrer">Vli</a>
   </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const buttons = document.querySelectorAll(".btn");
+  buttons.forEach((btn, index) => {
+    btn.style.animationDelay = `${index * 0.15}s`; // xuất hiện từng nút
+  });
+});
+</script>
+
 </body>
 </html>

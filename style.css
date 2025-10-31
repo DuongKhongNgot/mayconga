@@ -1,9 +1,18 @@
+/* Font iOS */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
 
-/* Background gradient động */
+/* Gradient động phổ màu rộng Display-P3 */
 body {
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background: linear-gradient(120deg, #dbeafe, #bfdbfe, #c7d2fe);
+
+  background: linear-gradient(
+    120deg,
+    color(display-p3 0.9 0.95 1),
+    color(display-p3 0.75 0.82 1),
+    color(display-p3 0.70 0.78 1),
+    color(display-p3 0.82 0.9 1)
+  );
+
   background-size: 200% 200%;
   animation: gradientMove 12s ease infinite;
 
@@ -14,6 +23,23 @@ body {
   min-height: 100vh;
   margin: 0;
   padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* BONUS: ánh sáng glow nhẹ kiểu iOS */
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at 25% 20%,
+    color(display-p3 1 1 1 / 0.4),
+    transparent 55%
+  );
+  mix-blend-mode: screen;
+  filter: blur(20px);
 }
 
 /* Title */
@@ -21,7 +47,7 @@ h1 {
   font-size: 26px;
   font-weight: 700;
   margin-bottom: 30px;
-  color: #1e3a8a;
+  color: color(display-p3 0.12 0.18 0.35);
 }
 
 /* Button container */
@@ -30,6 +56,8 @@ h1 {
   flex-direction: column;
   gap: 15px;
   width: 250px;
+  position: relative;
+  z-index: 2;
 }
 
 /* Liquid glass button */
@@ -40,16 +68,16 @@ h1 {
   text-align: center;
   border-radius: 18px;
   text-decoration: none;
-  color: #0f172a;
+  color: color(display-p3 0.12 0.18 0.35);
 
-  background: rgba(255, 255, 255, 0.30);
-  backdrop-filter: blur(18px) saturate(170%);
-  -webkit-backdrop-filter: blur(18px) saturate(170%);
-  border: 1px solid rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.5);
 
   box-shadow:
-    0 8px 20px rgba(0, 0, 0, 0.15),
-    inset 0 1px 1.5px rgba(255, 255, 255, 0.6);
+    0 8px 22px rgba(0, 0, 0, 0.15),
+    inset 0 1px 1.6px rgba(255, 255, 255, 0.6);
 
   transition: 0.25s ease;
 
@@ -60,11 +88,11 @@ h1 {
 
 /* Hover */
 .btn:hover {
-  transform: translateY(-3px) scale(1.03);
-  background: rgba(255, 255, 255, 0.38);
+  transform: translateY(-3px) scale(1.04);
+  background: rgba(255, 255, 255, 0.35);
   box-shadow:
-    0 12px 26px rgba(0, 0, 0, 0.22),
-    inset 0 1px 2px rgba(255, 255, 255, 0.7);
+    0 12px 26px rgba(0, 0, 0, 0.2),
+    inset 0 1px 2px rgba(255, 255, 255, 0.75);
 }
 
 /* Active click */
@@ -73,7 +101,7 @@ h1 {
   box-shadow: 0 4px 10px rgba(0,0,0,0.18);
 }
 
-/* Fade animation */
+/* Fade animation each button */
 @keyframes fadeUp {
   0% { opacity: 0; transform: translateY(15px); }
   100% { opacity: 1; transform: translateY(0); }

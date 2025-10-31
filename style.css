@@ -1,8 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
 
+/* Background gradient động */
 body {
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background: linear-gradient(to bottom right, #dbeafe, #bfdbfe);
+  background: linear-gradient(120deg, #dbeafe, #bfdbfe, #c7d2fe);
+  background-size: 200% 200%;
+  animation: gradientMove 12s ease infinite;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,7 +24,7 @@ h1 {
   color: #1e3a8a;
 }
 
-/* Button layout */
+/* Button container */
 .button-container {
   display: flex;
   flex-direction: column;
@@ -28,7 +32,7 @@ h1 {
   width: 250px;
 }
 
-/* Liquid Glass buttons */
+/* Liquid glass button */
 .btn {
   padding: 14px;
   font-size: 18px;
@@ -36,7 +40,7 @@ h1 {
   text-align: center;
   border-radius: 18px;
   text-decoration: none;
-  color: #1e293b;
+  color: #0f172a;
 
   background: rgba(255, 255, 255, 0.30);
   backdrop-filter: blur(18px) saturate(170%);
@@ -51,10 +55,10 @@ h1 {
 
   opacity: 0;
   transform: translateY(12px);
-  animation: fadeUp 0.55s ease forwards;
+  animation: fadeUp .55s ease forwards;
 }
 
-/* Hover & click */
+/* Hover */
 .btn:hover {
   transform: translateY(-3px) scale(1.03);
   background: rgba(255, 255, 255, 0.38);
@@ -63,13 +67,21 @@ h1 {
     inset 0 1px 2px rgba(255, 255, 255, 0.7);
 }
 
+/* Active click */
 .btn:active {
   transform: scale(0.96);
   box-shadow: 0 4px 10px rgba(0,0,0,0.18);
 }
 
-/* Animation */
+/* Fade animation */
 @keyframes fadeUp {
   0% { opacity: 0; transform: translateY(15px); }
   100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Gradient movement */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }

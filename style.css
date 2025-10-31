@@ -8,7 +8,7 @@ body {
   justify-content: center;
   align-items: center;
   animation: bgMove 6s ease-in-out infinite alternate;
-  background: linear-gradient(120deg, #d7eaff, #b9d4ff, #d2e3ff);
+  background: linear-gradient(120deg, #d7eaff, #79abfa, #9abef7);
   background-size: 200% 200%;
 }
 
@@ -22,28 +22,24 @@ h1 {
   font-size: 26px;
   font-weight: 700;
   margin-bottom: 30px;
-  padding: 14px 38px; /* ✅ rộng hơn nút */
+  padding: 14px 38px;
   text-align: center;
   display: inline-block;
 
-  /* RGB gradient text */
   background: linear-gradient(90deg,
-    #ff0000, #ff7a00, #ffee00, #00ff47, #00c8ff, #2b00ff, #ff00f5, #ff0000
-  );
+    #ff0000, #ff7a00, #ffee00, #00ff47, #00c8ff, #2b00ff, #ff00f5, #ff0000);
   background-size: 300%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   animation: rgbTitle 4s linear infinite;
 
-  /* Glass bubble frame */
   border-radius: 20px;
   background-color: rgba(255,255,255,0.20);
   backdrop-filter: blur(14px) saturate(150%);
   -webkit-backdrop-filter: blur(14px) saturate(150%);
   border: 1px solid rgba(255,255,255,0.45);
 
-  /* Glow */
   box-shadow:
       0 6px 18px rgba(0,0,0,0.12),
       inset 0 2px 4px rgba(255,255,255,0.85);
@@ -54,7 +50,7 @@ h1 {
   100% { background-position: 300% }
 }
 
-/* Buttons container */
+/* Button layout */
 .button-container {
   display: flex;
   flex-direction: column;
@@ -80,30 +76,20 @@ h1 {
   transform: translateY(15px);
   box-shadow: 0 8px 18px rgba(0,0,0,0.10),
               inset 0 1px 2px rgba(255,255,255,0.7);
-}
 
-/* Stagger load animations */
-.btn:nth-child(1) { animation-delay: 0.15s; }
-.btn:nth-child(2) { animation-delay: 0.30s; }
-.btn:nth-child(3) { animation-delay: 0.45s; }
-.btn:nth-child(4) { animation-delay: 0.60s; }
-.btn:nth-child(5) { animation-delay: 0.75s; }
+  transition: transform .18s cubic-bezier(.22,1.28,.52,1),
+              box-shadow .18s ease;
+  transform-style: preserve-3d;
+}
 
 @keyframes fadeUp {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Hover */
+/* Hover fallback (still good) */
 .btn:hover {
-  transform: translateY(-4px);
+  transform: translateY(-4px) scale(1.04);
   background: rgba(255,255,255,0.32);
-  box-shadow: 0 10px 22px rgba(0,0,0,0.14),
-              inset 0 1px 2px rgba(255,255,255,0.9);
-  transition: 0.2s;
-}
-
-/* bounce tap effect */
-.btn:active {
-  transform: scale(0.92);
-  transition: 0.08s;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.18),
+              inset 0 1px 2px rgba(255,255,255,.9);
 }

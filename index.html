@@ -17,16 +17,29 @@
     <a href="https://azota.vn/de-thi/mv3ybs" class="btn" target="_blank" rel="noopener noreferrer">Địa Đ/S</a>
     <a href="https://azota.vn/de-thi/nbwdxa" class="btn" target="_blank" rel="noopener noreferrer">Đạo Đức</a>
     <a href="https://azota.vn/de-thi/flfoco" class="btn" target="_blank" rel="noopener noreferrer">Vật Lý</a>
-    <a href="https://azota.vn/de-thi/dnq19p" class="btn" target="_blank" rel="noopener noreferrer">Vật Lú TLN</a>
+    <a href="https://azota.vn/de-thi/dnq19p" class="btn" target="_blank" rel="noopener noreferrer">Vật Lý TLN</a>
     <a href="https://azota.vn/de-thi/9wizub" class="btn" target="_blank" rel="noopener noreferrer">Lịch Sử</a>
   </div>
 
-<!-- Animation delay -->
+<!-- Animation stagger + iOS bounce -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const buttons = document.querySelectorAll(".btn");
+
+  // Stagger fade animation
   buttons.forEach((btn, index) => {
     btn.style.animationDelay = `${index * 0.15}s`;
+  });
+
+  // iOS click bounce
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      btn.style.transition = "transform 0.22s cubic-bezier(.34,1.56,.64,1)";
+      btn.style.transform = "scale(0.88)";
+      setTimeout(() => {
+        btn.style.transform = "scale(1)";
+      }, 160);
+    });
   });
 });
 </script>

@@ -1,6 +1,8 @@
-/* Font & background */
+/* Font giống iOS */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
 body {
-  font-family: "Segoe UI", Arial, sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background: linear-gradient(to bottom right, #dbeafe, #bfdbfe);
   display: flex;
   flex-direction: column;
@@ -8,58 +10,73 @@ body {
   justify-content: center;
   min-height: 100vh;
   margin: 0;
+  padding: 20px;
+  color: #0f172a;
 }
 
-/* Title */
+/* Title nhẹ nhàng */
 h1 {
-  color: #1d4ed8;
+  font-size: 24px;
+  font-weight: 600;
   margin-bottom: 30px;
-  text-align: center;
+  color: #1e293b;
+  letter-spacing: -0.5px;
 }
 
-/* Button container layout */
+/* Layout button */
 .button-container {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  width: 200px;
+  gap: 18px;
+  width: 260px;
 }
 
-/* Button base style */
+/* LIQUID GLASS BUTTON */
 .btn {
-  background-color: #3b82f6;
-  color: white;
-  text-align: center;
-  padding: 12px 0;
-  border: none;
-  border-radius: 10px;
+  padding: 14px 0;
   font-size: 18px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: 0.2s;
+  font-weight: 600;
+  text-align: center;
   text-decoration: none;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  border-radius: 18px;
 
-  /* Fade-in animation */
+  /* Liquid glass effect */
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+
+  /* light gloss layer */
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.15),
+    inset 0 1px 1.5px rgba(255, 255, 255, 0.6);
+
+  color: #0f172a;
+  transition: 0.25s ease;
+
+  /* Fade in animation */
   opacity: 0;
   transform: translateY(12px);
-  animation: fadeUp 0.6s ease forwards;
+  animation: fadeUp 0.55s ease forwards;
 }
 
-/* Hover effect */
+/* Hover liquid lift */
 .btn:hover {
-  background-color: #2563eb;
-  transform: translateY(-2px);
+  transform: translateY(-4px) scale(1.03);
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.22),
+    inset 0 1px 1.8px rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.32);
 }
 
-/* Animation keyframe */
+/* Click press */
+.btn:active {
+  transform: scale(0.96);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.18);
+}
+
+/* Keyframe animation */
 @keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  0% { opacity: 0; transform: translateY(14px); }
+  100% { opacity: 1; transform: translateY(0); }
 }

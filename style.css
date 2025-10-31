@@ -1,4 +1,4 @@
-/* Liquid wave background */
+/* Liquid wave background fixed for mobile */
 body {
   font-family: "Segoe UI", Arial, sans-serif;
   margin: 0;
@@ -7,32 +7,31 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: relative;
   overflow: hidden;
-
+  position: relative;
   background: linear-gradient(120deg, #d7eaff, #8eb7fa, #bad1f7);
 }
 
-/* Liquid waves overlay layer */
+/* liquid waves layer */
 body::before {
   content: "";
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  width: 200%;
-  height: 200%;
+  width: 220vw;
+  height: 220vh;
   background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.45), transparent 60%),
               radial-gradient(circle at 70% 70%, rgba(255,255,255,.35), transparent 60%),
               radial-gradient(circle at 50% 50%, rgba(255,255,255,.25), transparent 60%);
-  animation: waveMove 10s infinite ease-in-out alternate;
-  filter: blur(90px);
+  animation: waveMove 12s infinite ease-in-out alternate;
+  filter: blur(100px);
   z-index: -1;
   opacity: .9;
 }
 
 @keyframes waveMove {
-  0% { transform: translate(-10%, -10%) scale(1); }
-  100% { transform: translate(10%, 10%) scale(1.15); }
+  0% { transform: translate(-15%, -15%) scale(1); }
+  100% { transform: translate(10%, 10%) scale(1.2); }
 }
 
 /* Title RGB Glass */
@@ -44,8 +43,7 @@ h1 {
   text-align: center;
   display: inline-block;
 
-  background: linear-gradient(90deg,
-    #ff0000, #ff7a00, #ffee00, #00ff47, #00c8ff, #2b00ff, #ff00f5, #ff0000);
+  background: linear-gradient(90deg,#ff0000,#ff7a00,#ffee00,#00ff47,#00c8ff,#2b00ff,#ff00f5,#ff0000);
   background-size: 300%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -72,7 +70,7 @@ h1 {
   gap: 14px;
 }
 
-/* Liquid Glass button */
+/* Glass buttons */
 .btn {
   width: 200px;
   padding: 15px 0;
@@ -90,7 +88,7 @@ h1 {
   opacity: 0;
   transform: translateY(15px);
   box-shadow: 0 8px 18px rgba(0,0,0,0.10),
-              inset 0 1px 2px rgba(255,255,255,.7);
+              inset 0 1px 2px rgba(255,255,255,0.7);
 
   transition: transform .18s cubic-bezier(.22,1.28,.52,1),
               box-shadow .18s ease;
@@ -101,10 +99,16 @@ h1 {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* 3D floating hover */
+/* fallback hover (desktop) */
 .btn:hover {
   transform: translateY(-4px) scale(1.04);
   background: rgba(255,255,255,0.32);
   box-shadow: 0 12px 28px rgba(0,0,0,0.18),
               inset 0 1px 2px rgba(255,255,255,.9);
+}
+
+/* Better look on mobile */
+@media (max-width: 480px) {
+  .btn { width: 260px; font-size: 19px; }
+  h1 { font-size: 24px; padding: 12px 32px; }
 }

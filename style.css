@@ -22,34 +22,36 @@ h1 {
   font-size: 26px;
   font-weight: 700;
   margin-bottom: 30px;
-  padding: 10px 30px; /* làm rộng hơn nút  */
+  padding: 14px 38px; /* ✅ rộng hơn nút */
   text-align: center;
+  display: inline-block;
 
   /* RGB gradient text */
   background: linear-gradient(90deg,
-    #ff0000,#ff7a00,#ffee00,#00ff47,#00c8ff,#2b00ff,#ff00f5,#ff0000);
-  background-size: 400%;
+    #ff0000, #ff7a00, #ffee00, #00ff47, #00c8ff, #2b00ff, #ff00f5, #ff0000
+  );
+  background-size: 300%;
   -webkit-background-clip: text;
+  background-clip: text;
   color: transparent;
-  animation: rgbTitle 6s linear infinite;
+  animation: rgbTitle 4s linear infinite;
 
-  /* Glass effect */
-  border-radius: 18px;
-  backdrop-filter: blur(14px) saturate(140%);
-  -webkit-backdrop-filter: blur(14px) saturate(140%);
-  background-color: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255,255,255,0.35);
-  display: inline-block;
+  /* Glass bubble frame */
+  border-radius: 20px;
+  background-color: rgba(255,255,255,0.20);
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  border: 1px solid rgba(255,255,255,0.45);
 
-  /* subtle luxury glow */
+  /* Glow */
   box-shadow:
-    0 8px 18px rgba(0,0,0,0.10),
-    inset 0 1px 2px rgba(255,255,255,0.7);
+      0 6px 18px rgba(0,0,0,0.12),
+      inset 0 2px 4px rgba(255,255,255,0.85);
 }
 
 @keyframes rgbTitle {
-  0% { background-position: 0%; }
-  100% { background-position: 400%; }
+  0% { background-position: 0% }
+  100% { background-position: 300% }
 }
 
 /* Buttons container */
@@ -59,7 +61,7 @@ h1 {
   gap: 14px;
 }
 
-/* Liquid glass button style */
+/* Liquid glass buttons */
 .btn {
   width: 200px;
   padding: 15px 0;
@@ -80,7 +82,7 @@ h1 {
               inset 0 1px 2px rgba(255,255,255,0.7);
 }
 
-/* Fade stagger buttons */
+/* Stagger load animations */
 .btn:nth-child(1) { animation-delay: 0.15s; }
 .btn:nth-child(2) { animation-delay: 0.30s; }
 .btn:nth-child(3) { animation-delay: 0.45s; }
@@ -88,13 +90,10 @@ h1 {
 .btn:nth-child(5) { animation-delay: 0.75s; }
 
 @keyframes fadeUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* Hover effect */
+/* Hover */
 .btn:hover {
   transform: translateY(-4px);
   background: rgba(255,255,255,0.32);

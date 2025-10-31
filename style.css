@@ -1,4 +1,3 @@
-/* Font giống iOS */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
 
 body {
@@ -11,72 +10,66 @@ body {
   min-height: 100vh;
   margin: 0;
   padding: 20px;
-  color: #0f172a;
 }
 
-/* Title nhẹ nhàng */
+/* Title */
 h1 {
-  font-size: 24px;
-  font-weight: 600;
+  font-size: 26px;
+  font-weight: 700;
   margin-bottom: 30px;
-  color: #1e293b;
-  letter-spacing: -0.5px;
+  color: #1e3a8a;
 }
 
-/* Layout button */
+/* Button layout */
 .button-container {
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  width: 260px;
+  gap: 15px;
+  width: 250px;
 }
 
-/* LIQUID GLASS BUTTON */
+/* Liquid Glass buttons */
 .btn {
-  padding: 14px 0;
+  padding: 14px;
   font-size: 18px;
   font-weight: 600;
   text-align: center;
-  text-decoration: none;
   border-radius: 18px;
+  text-decoration: none;
+  color: #1e293b;
 
-  /* Liquid glass effect */
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(18px) saturate(160%);
-  -webkit-backdrop-filter: blur(18px) saturate(160%);
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.30);
+  backdrop-filter: blur(18px) saturate(170%);
+  -webkit-backdrop-filter: blur(18px) saturate(170%);
+  border: 1px solid rgba(255, 255, 255, 0.45);
 
-  /* light gloss layer */
   box-shadow:
-    0 4px 12px rgba(0, 0, 0, 0.15),
+    0 8px 20px rgba(0, 0, 0, 0.15),
     inset 0 1px 1.5px rgba(255, 255, 255, 0.6);
 
-  color: #0f172a;
   transition: 0.25s ease;
 
-  /* Fade in animation */
   opacity: 0;
   transform: translateY(12px);
   animation: fadeUp 0.55s ease forwards;
 }
 
-/* Hover liquid lift */
+/* Hover & click */
 .btn:hover {
-  transform: translateY(-4px) scale(1.03);
+  transform: translateY(-3px) scale(1.03);
+  background: rgba(255, 255, 255, 0.38);
   box-shadow:
-    0 8px 20px rgba(0, 0, 0, 0.22),
-    inset 0 1px 1.8px rgba(255, 255, 255, 0.6);
-  background: rgba(255, 255, 255, 0.32);
+    0 12px 26px rgba(0, 0, 0, 0.22),
+    inset 0 1px 2px rgba(255, 255, 255, 0.7);
 }
 
-/* Click press */
 .btn:active {
   transform: scale(0.96);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.18);
 }
 
-/* Keyframe animation */
+/* Animation */
 @keyframes fadeUp {
-  0% { opacity: 0; transform: translateY(14px); }
+  0% { opacity: 0; transform: translateY(15px); }
   100% { opacity: 1; transform: translateY(0); }
 }

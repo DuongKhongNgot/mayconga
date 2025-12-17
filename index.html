@@ -1,57 +1,98 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Học Vẹt Giữa Kì I</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Học vẹt cuối kì</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-<h1>Học Vẹt Giữa Kì I</h1>
+  <!-- CURSOR LIGHT -->
+  <div class="cursor-light"></div>
 
-<div class="button-container">
-  <a href="https://azota.vn/de-thi/geqfi0" class="btn" target="_blank">TN Địa</a>
-  <a href="https://azota.vn/de-thi/mv3ybs" class="btn" target="_blank">Địa Đ/S</a>
-  <a href="https://azota.vn/de-thi/nbwdxa" class="btn" target="_blank">Đạo Đức</a>
-  <a href="https://azota.vn/de-thi/3dt1uf" class="btn" target="_blank">Vật Lú</a>
-</div>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-left">🍀</div>
 
-<script>
-// Stagger fade animation
-document.addEventListener("DOMContentLoaded", () => {
-  const buttons = document.querySelectorAll(".btn");
-  buttons.forEach((btn, index) => btn.style.animationDelay = `${index * 0.15}s`);
-});
+    <div class="nav-center">
+      <a href="#">Home</a>
+      <a href="#">Devices</a>
+      <a href="#">Team</a>
+      <a href="#">Blog</a>
+      <a href="#">Legal</a>
+    </div>
 
-// 3D floating glass effect
-const buttons3D = document.querySelectorAll(".btn");
+    <button class="nav-btn">Nuôi tôi</button>
+  </nav>
 
-buttons3D.forEach(btn => {
-  btn.addEventListener("mousemove", e => {
-    const rect = btn.getBoundingClientRect();
-    const x = (e.clientX - rect.left) - rect.width / 2;
-    const y = (e.clientY - rect.top) - rect.height / 2;
+  <!-- HERO -->
+  <h1 class="hero-title">Học vẹt cuối kì</h1>
 
-    const moveX = x / 18;
-    const moveY = y / 18;
+  <!-- BUTTONS -->
+  <div class="button-container">
+    <a href="https://azota.vn/de-thi/geqfi0" class="btn" target="_blank">TN Địa</a>
+    <a href="https://azota.vn/de-thi/mv3ybs" class="btn" target="_blank">Địa Đ/S</a>
+    <a href="https://azota.vn/de-thi/nbwdxa" class="btn" target="_blank">Đạo Đức</a>
+    <a href="https://azota.vn/de-thi/3dt1uf" class="btn" target="_blank">Vật Lú</a>
+  </div>
 
-    btn.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.05)`;
-    btn.style.boxShadow = `
-      ${-moveX}px ${-moveY}px 22px rgba(0,0,0,0.22),
-      inset 0 1px 2px rgba(255,255,255,.9)
-    `;
+  <script>
+  /* ================= STAGGER ANIMATION ================= */
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".btn")
+      .forEach((b, i) => b.style.animationDelay = `${i * 0.15}s`);
   });
 
-  btn.addEventListener("mouseleave", () => {
-    btn.style.transform = "translate(0,0) scale(1)";
-    btn.style.boxShadow = `
-      0 8px 18px rgba(0,0,0,0.10),
-      inset 0 1px 2px rgba(255,255,255,.7)
-    `;
+  /* ================= 3D GLASS BUTTON EFFECT ================= */
+  document.querySelectorAll(".btn").forEach(btn => {
+    btn.addEventListener("mousemove", e => {
+      const r = btn.getBoundingClientRect();
+      const x = e.clientX - r.left - r.width / 2;
+      const y = e.clientY - r.top - r.height / 2;
+
+      const mx = x / 18;
+      const my = y / 18;
+
+      btn.style.transform = `translate(${mx}px, ${my}px) scale(1.05)`;
+      btn.style.boxShadow = `
+        ${-mx}px ${-my}px 22px rgba(0,0,0,.45),
+        inset 0 1px 2px rgba(255,255,255,.9)
+      `;
+    });
+
+    btn.addEventListener("mouseleave", () => {
+      btn.style.transform = "translate(0,0) scale(1)";
+      btn.style.boxShadow = `
+        0 8px 20px rgba(0,0,0,.35),
+        inset 0 1px 2px rgba(255,255,255,.7)
+      `;
+    });
   });
-});
-</script>
+
+  /* ================= CURSOR LIGHT TRACKING ================= */
+  const cursorLight = document.querySelector(".cursor-light");
+
+  let mouseX = 0, mouseY = 0;
+  let currentX = 0, currentY = 0;
+
+  document.addEventListener("mousemove", e => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+
+  function animateCursorLight() {
+    currentX += (mouseX - currentX) * 0.15;
+    currentY += (mouseY - currentY) * 0.15;
+
+    cursorLight.style.left = currentX + "px";
+    cursorLight.style.top  = currentY + "px";
+
+    requestAnimationFrame(animateCursorLight);
+  }
+
+  animateCursorLight();
+  </script>
 
 </body>
 </html>

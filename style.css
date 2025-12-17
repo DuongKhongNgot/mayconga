@@ -240,3 +240,83 @@ h1 {
     display: none;
   }
 }
+
+/* ===== QR OVERLAY ===== */
+.qr-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s ease;
+  z-index: 10;
+}
+
+.qr-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ===== QR MODAL ===== */
+.qr-modal {
+  position: relative;
+  width: 300px;
+  padding: 22px 20px 26px;
+  border-radius: 26px;
+  text-align: center;
+
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(22px) saturate(160%);
+  -webkit-backdrop-filter: blur(22px) saturate(160%);
+
+  border: 1px solid rgba(255,255,255,0.22);
+
+  box-shadow:
+    0 30px 80px rgba(0,0,0,0.8),
+    inset 0 1px 1px rgba(255,255,255,0.35);
+
+  transform: scale(.92);
+  transition: transform .3s ease;
+}
+
+.qr-overlay.active .qr-modal {
+  transform: scale(1);
+}
+
+.qr-modal h3 {
+  margin: 0 0 14px;
+  font-size: 20px;
+  color: #e5e7eb;
+}
+
+.qr-modal img {
+  width: 200px;
+  height: 200px;
+  border-radius: 14px;
+  background: white;
+}
+
+.qr-modal p {
+  margin-top: 12px;
+  font-size: 14px;
+  color: #cbd5f5;
+}
+
+/* close button */
+.qr-close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #e5e7eb;
+  cursor: pointer;
+}

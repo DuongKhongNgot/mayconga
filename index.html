@@ -16,10 +16,10 @@
     <div class="nav-left">🍀</div>
 
     <div class="nav-center">
-      <a href="#">Hãy Nuôi Tôi Ở Đây 👉</a>
+      <span>Hãy Nuôi Tôi Ở Đây 👉</span>
     </div>
 
-    <button class="nav-btn">Nuôi tôi</button>
+    <button class="nav-btn" id="donateBtn">Nuôi tôi</button>
   </nav>
 
   <!-- HERO -->
@@ -31,6 +31,16 @@
     <a href="https://azota.vn/de-thi/mv3ybs" class="btn" target="_blank">Địa Đ/S</a>
     <a href="https://azota.vn/de-thi/nbwdxa" class="btn" target="_blank">Đạo Đức</a>
     <a href="https://azota.vn/de-thi/3dt1uf" class="btn" target="_blank">Vật Lú</a>
+  </div>
+
+  <!-- QR MODAL -->
+  <div class="qr-overlay" id="qrOverlay">
+    <div class="qr-modal">
+      <button class="qr-close" id="qrClose">✕</button>
+      <h3>Nuôi tôi ☕</h3>
+      <img src="qr.jpg" alt="QR Donate">
+      <p>Quét mã để ủng hộ</p>
+    </div>
   </div>
 
   <script>
@@ -78,8 +88,8 @@
   });
 
   function animateCursorLight() {
-    currentX += (mouseX - currentX) * 0.15;
-    currentY += (mouseY - currentY) * 0.15;
+    currentX += (mouseX - currentX) * 0.12;
+    currentY += (mouseY - currentY) * 0.12;
 
     cursorLight.style.left = currentX + "px";
     cursorLight.style.top  = currentY + "px";
@@ -88,6 +98,25 @@
   }
 
   animateCursorLight();
+
+  /* ================= QR MODAL ================= */
+  const donateBtn = document.getElementById("donateBtn");
+  const qrOverlay = document.getElementById("qrOverlay");
+  const qrClose = document.getElementById("qrClose");
+
+  donateBtn.addEventListener("click", () => {
+    qrOverlay.classList.add("active");
+  });
+
+  qrClose.addEventListener("click", () => {
+    qrOverlay.classList.remove("active");
+  });
+
+  qrOverlay.addEventListener("click", e => {
+    if (e.target === qrOverlay) {
+      qrOverlay.classList.remove("active");
+    }
+  });
   </script>
 
 </body>

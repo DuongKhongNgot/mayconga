@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Học vẹt cuối kì</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- CURSOR LIGHT -->
+  <div class="cursor-light"></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-left">🤓👉</div>
+
+    <div class="nav-center">
+      <span class="donate-text">Hãy Nuôi Tôi Ở Đây ➡️➡️➡️</span>
+    </div>
+
+    <button class="nav-btn" id="donateBtn">Nuôi tôi</button>
+  </nav>
+
+  <!-- HERO -->
+  <h1 class="hero-title">Học vẹt cuối kì</h1>
+
+  <!-- BUTTONS -->
+  <div class="button-container">
+    <a href="https://youtu.be/dQw4w9WgXcQ?si=rCa8JCRyfQB1tUma" class="btn" target="_black">IDLE</a>
+  </div>
+
+  <!-- QR OVERLAY -->
+  <div class="qr-overlay" id="qrOverlay">
+    <div class="qr-modal">
+      <button class="qr-close" id="qrClose">✕</button>
+      <h3>Nuôi tôi ☕</h3>
+      <img src="qr.jpg" alt="QR Donate">
+      <p>Bạn cho tôi là TIỀN CỦA TÔI!</p>
+    </div>
+  </div>
+
+  <script>
+    /* STAGGER BUTTON */
+    document.querySelectorAll(".btn")
+      .forEach((b, i) => b.style.animationDelay = `${i * 0.15}s`);
+
+    /* CURSOR LIGHT */
+    const cursorLight = document.querySelector(".cursor-light");
+    let mx = 0, my = 0, cx = 0, cy = 0;
+
+    document.addEventListener("mousemove", e => {
+      mx = e.clientX;
+      my = e.clientY;
+    });
+
+    (function animate() {
+      cx += (mx - cx) * 0.12;
+      cy += (my - cy) * 0.12;
+      cursorLight.style.left = cx + "px";
+      cursorLight.style.top = cy + "px";
+      requestAnimationFrame(animate);
+    })();
+
+    /* QR MODAL */
+    const donateBtn = document.getElementById("donateBtn");
+    const qrOverlay = document.getElementById("qrOverlay");
+    const qrClose = document.getElementById("qrClose");
+
+    donateBtn.onclick = () => qrOverlay.classList.add("active");
+    qrClose.onclick = () => qrOverlay.classList.remove("active");
+
+    qrOverlay.onclick = e => {
+      if (e.target === qrOverlay) qrOverlay.classList.remove("active");
+    };
+
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape") qrOverlay.classList.remove("active");
+    });
+  </script>
+</body>
+</html>

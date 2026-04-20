@@ -1,86 +1,206 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Học vẹt</title>
+  <title>Học Vẹt Giữa Kì - Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <!-- Use Phosphor Icons for modern icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <!-- CURSOR LIGHT -->
-  <div class="cursor-light"></div>
-
-  <!-- NAVBAR -->
-  <nav class="navbar">
-    <div class="nav-left">🤓👉</div>
-
-    <div class="nav-center">
-      <span class="donate-text">Hãy Nuôi Tôi Ở Đây ➡️➡️➡️</span>
-    </div>
-
-    <button class="nav-btn" id="donateBtn">Nuôi tôi</button>
-  </nav>
-
-  <!-- HERO -->
-  <h1 class="hero-title">Học vẹt giữa kì</h1>
-
-  <!-- BUTTONS -->
-  <div class="button-container">
-    <a href="https://olm.vn/chu-de/su-4556110684/?i_c=118080516382" class="btn" target="_black">Sử</a>
-    <a href="https://olm.vn/chu-de/vli-4559132490/?i_c=118085885157" class="btn" target="_blank">Vat lu</a>
-    <a href="https://olm.vn/chu-de/gdpl-4559988605/?i_c=118087407626" class="btn" target="_blank">Đạo đức</a>
-    <a href="https://olm.vn/chu-de/dia-4562516770/?i_c=118094352371" class="btn" target="_blank">Địa</a>
-    <a href="https://olm.vn/chu-de/sinh-4589300559/?i_c=118141700227" class="btn" target="_black">sinh</a>
+  <!-- Animated Background -->
+  <div class="bg-shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
   </div>
 
+  <!-- Cursor Tracker (Particles) -->
+  <canvas id="particleCanvas"></canvas>
+
+  <main class="container">
+    <header class="profile">
+      <div class="profile-img-container">
+        <div class="profile-img">🤓</div>
+      </div>
+      <h1 class="title">Học vẹt giữa kì</h1>
+    </header>
+
+    <div class="bento-grid">
+      <!-- Môn Sử -->
+      <a href="https://olm.vn/chu-de/su-4556110684/?i_c=118080516382" class="bento-item subject-card" target="_blank">
+        <div class="card-icon"><i class="ph ph-scroll"></i></div>
+        <div class="card-content">
+          <h3>Lịch Sử</h3>
+        </div>
+        <i class="ph ph-arrow-up-right card-arrow"></i>
+      </a>
+
+      <!-- Môn Vật Lí -->
+      <a href="https://olm.vn/chu-de/vli-4559132490/?i_c=118085885157" class="bento-item subject-card" target="_blank">
+        <div class="card-icon"><i class="ph ph-atom"></i></div>
+        <div class="card-content">
+          <h3>Vật Lí</h3>
+        </div>
+        <i class="ph ph-arrow-up-right card-arrow"></i>
+      </a>
+
+      <!-- Môn Đạo Đức / GDCD -->
+      <a href="https://olm.vn/chu-de/gdpl-4559988605/?i_c=118087407626" class="bento-item subject-card" target="_blank">
+        <div class="card-icon"><i class="ph ph-scales"></i></div>
+        <div class="card-content">
+          <h3>Đạo Đức</h3>
+        </div>
+        <i class="ph ph-arrow-up-right card-arrow"></i>
+      </a>
+
+      <!-- Môn Địa -->
+      <a href="https://olm.vn/chu-de/dia-4562516770/?i_c=118094352371" class="bento-item subject-card" target="_blank">
+        <div class="card-icon"><i class="ph ph-globe-hemisphere-east"></i></div>
+        <div class="card-content">
+          <h3>Địa Lí</h3>
+        </div>
+        <i class="ph ph-arrow-up-right card-arrow"></i>
+      </a>
+
+      <!-- Môn Sinh -->
+      <a href="https://olm.vn/chu-de/sinh-4589300559/?i_c=118141700227" class="bento-item subject-card" target="_blank">
+        <div class="card-icon"><i class="ph ph-dna"></i></div>
+        <div class="card-content">
+          <h3>Sinh Học</h3>
+        </div>
+        <i class="ph ph-arrow-up-right card-arrow"></i>
+      </a>
+
+      <!-- Donate Card -->
+      <div class="bento-item donate-card" id="donateBtn">
+        <div class="card-icon"><i class="ph ph-coffee"></i></div>
+        <div class="card-content">
+          <h3>Nuôi Tôi</h3>
+          <p>Bơm máu để sống tiếp</p>
+        </div>
+        <div class="donate-btn-inner">Ủng hộ</div>
+      </div>
+    </div>
+  </main>
+
   <!-- QR OVERLAY -->
-  <div class="qr-overlay" id="qrOverlay">
-    <div class="qr-modal">
-      <button class="qr-close" id="qrClose">✕</button>
-      <h3>Nuôi tôi ☕</h3>
-      <img src="qr.jpg" alt="QR Donate">
-      <p>Bạn cho tôi là TIỀN CỦA TÔI!</p>
+  <div class="modal-overlay" id="qrOverlay">
+    <div class="modal-content">
+      <button class="modal-close" id="qrClose"><i class="ph ph-x"></i></button>
+      <div class="modal-header">
+        <i class="ph-fill ph-heart-beat fill-icon"></i>
+        <h3>Tiếp Máu Cho Tác Giả</h3>
+      </div>
+      <div class="qr-wrapper">
+        <img src="qr.jpg" alt="QR Donate">
+        <div class="scanning-line"></div>
+      </div>
+      <p class="modal-msg">"Sự ủng hộ của bạn là động lực để tôi code tiếp!" 💖</p>
     </div>
   </div>
 
   <script>
-    /* STAGGER BUTTON */
-    document.querySelectorAll(".btn")
-      .forEach((b, i) => b.style.animationDelay = `${i * 0.15}s`);
+    // Particle Cursor Effect
+    const canvas = document.getElementById("particleCanvas");
+    const ctx = canvas.getContext("2d");
+    let particles = [];
 
-    /* CURSOR LIGHT */
-    const cursorLight = document.querySelector(".cursor-light");
-    let mx = 0, my = 0, cx = 0, cy = 0;
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", resize);
+    resize();
+
+    let isMoving = false;
+    let timeout;
 
     document.addEventListener("mousemove", e => {
-      mx = e.clientX;
-      my = e.clientY;
+      isMoving = true;
+      clearTimeout(timeout);
+      timeout = setTimeout(() => isMoving = false, 100);
+
+      // Thêm hạt mới khi di chuột
+      for (let i = 0; i < 3; i++) {
+        particles.push({
+          x: e.clientX,
+          y: e.clientY,
+          vx: (Math.random() - 0.5) * 1.5,
+          vy: (Math.random() - 0.5) * 1.5,
+          size: Math.random() * 8 + 4,
+          life: 1,
+          color: `hsl(${Math.random() * 60 + 200}, 90%, 65%)`
+        });
+      }
     });
 
-    (function animate() {
-      cx += (mx - cx) * 0.12;
-      cy += (my - cy) * 0.12;
-      cursorLight.style.left = cx + "px";
-      cursorLight.style.top = cy + "px";
-      requestAnimationFrame(animate);
-    })();
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    /* QR MODAL */
+      for (let i = 0; i < particles.length; i++) {
+        let p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy - 0.4; // Hạt bay nhẹ lên trên
+        p.life -= 0.015;
+        p.size *= 0.95;
+
+        if (p.life > 0) {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.globalAlpha = p.life;
+          ctx.shadowBlur = 15;
+          ctx.shadowColor = p.color;
+          ctx.fill();
+        }
+      }
+      particles = particles.filter(p => p.life > 0);
+
+      ctx.shadowBlur = 0;
+      ctx.globalAlpha = 1;
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    // Modal Logic
     const donateBtn = document.getElementById("donateBtn");
     const qrOverlay = document.getElementById("qrOverlay");
     const qrClose = document.getElementById("qrClose");
 
-    donateBtn.onclick = () => qrOverlay.classList.add("active");
-    qrClose.onclick = () => qrOverlay.classList.remove("active");
+    donateBtn.addEventListener("click", () => {
+      qrOverlay.classList.add("active");
+    });
 
-    qrOverlay.onclick = e => {
-      if (e.target === qrOverlay) qrOverlay.classList.remove("active");
-    };
+    qrClose.addEventListener("click", () => {
+      qrOverlay.classList.remove("active");
+    });
+
+    qrOverlay.addEventListener("click", e => {
+      if (e.target === qrOverlay) {
+        qrOverlay.classList.remove("active");
+      }
+    });
 
     document.addEventListener("keydown", e => {
-      if (e.key === "Escape") qrOverlay.classList.remove("active");
+      if (e.key === "Escape") {
+        qrOverlay.classList.remove("active");
+      }
+    });
+
+    // Staggered Animation for Bento Items
+    const bentoItems = document.querySelectorAll('.bento-item');
+    bentoItems.forEach((item, index) => {
+      item.style.animationDelay = `${index * 0.1}s`;
     });
   </script>
 </body>
+
 </html>

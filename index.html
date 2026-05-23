@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Học Vẹt</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <!-- Use Phosphor Icons for modern icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- Animated Background -->
+  <div class="bg-shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+  </div>
+
+  <!-- Cursor Tracker (Particles) -->
+  <canvas id="particleCanvas"></canvas>
+
+  <!-- Source Code Button -->
+  <a href="https://github.com/DuongKhongNgot/mayconga" class="source-code-btn" target="_blank">
+    <i class="ph ph-github-logo"></i>
+    <span>Source Code</span>
+  </a>
+
+  <main class="container">
+    <header class="profile">
+      <div class="profile-img-container">
+        <div class="profile-img">rm -rf</div>
+      </div>
+      <h1 class="title">Học vẹt năm cuối</h1>
+    </header>
+
+    <div class="bento-grid">
+      <!-- Môn -->
+      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="bento-item subject-card" target="_blank">
+        <div class="card-icon"><i class="ph ph-scroll"></i></div>
+        <div class="card-content">
+          <h3>Test</h3>
+        </div>
+        <i class="ph ph-arrow-up-right card-arrow"></i>
+      </a>
+
+      <!-- Donate Card -->
+      <div class="bento-item donate-card" id="donateBtn">
+        <div class="card-icon"><i class="ph ph-coffee"></i></div>
+        <div class="card-content">
+          <h3>Nuôi Tôi</h3>
+          <p>Bơm máu để sống tiếp</p>
+        </div>
+        <div class="donate-btn-inner">Ủng hộ</div>
+      </div>
+    </div>
+  </main>
+
+  <!-- QR OVERLAY -->
+  <div class="modal-overlay" id="qrOverlay">
+    <div class="modal-content">
+      <button class="modal-close" id="qrClose"><i class="ph ph-x"></i></button>
+      <div class="modal-header">
+        <i class="ph-fill ph-heart-beat fill-icon"></i>
+        <h3>Cho toi 1 goi mi ton</h3>
+      </div>
+      <div class="qr-wrapper">
+        <img src="qr.jpg" alt="QR Donate">
+        <div class="scanning-line"></div>
+      </div>
+      <p class="modal-msg">Đói r mặt dày ăn xin!</p>
+    </div>
+  </div>
+
+  <script>
+    // Particle Cursor Effect
+    const canvas = document.getElementById("particleCanvas");
+    const ctx = canvas.getContext("2d");
+    let particles = [];
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", resize);
+    resize();
+
+    let isMoving = false;
+    let timeout;
+
+    document.addEventListener("mousemove", e => {
+      isMoving = true;
+      clearTimeout(timeout);
+      timeout = setTimeout(() => isMoving = false, 100);
+
+      // Thêm hạt mới khi di chuột
+      for (let i = 0; i < 3; i++) {
+        particles.push({
+          x: e.clientX,
+          y: e.clientY,
+          vx: (Math.random() - 0.5) * 1.5,
+          vy: (Math.random() - 0.5) * 1.5,
+          size: Math.random() * 8 + 4,
+          life: 1,
+          color: `hsl(${Math.random() * 60 + 200}, 90%, 65%)`
+        });
+      }
+    });
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (let i = 0; i < particles.length; i++) {
+        let p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy - 0.4; // Hạt bay nhẹ lên trên
+        p.life -= 0.015;
+        p.size *= 0.95;
+
+        if (p.life > 0) {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.globalAlpha = p.life;
+          ctx.shadowBlur = 15;
+          ctx.shadowColor = p.color;
+          ctx.fill();
+        }
+      }
+      particles = particles.filter(p => p.life > 0);
+
+      ctx.shadowBlur = 0;
+      ctx.globalAlpha = 1;
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    // Modal Logic
+    const donateBtn = document.getElementById("donateBtn");
+    const qrOverlay = document.getElementById("qrOverlay");
+    const qrClose = document.getElementById("qrClose");
+
+    donateBtn.addEventListener("click", () => {
+      qrOverlay.classList.add("active");
+    });
+
+    qrClose.addEventListener("click", () => {
+      qrOverlay.classList.remove("active");
+    });
+
+    qrOverlay.addEventListener("click", e => {
+      if (e.target === qrOverlay) {
+        qrOverlay.classList.remove("active");
+      }
+    });
+
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape") {
+        qrOverlay.classList.remove("active");
+      }
+    });
+
+    // Staggered Animation for Bento Items
+    const bentoItems = document.querySelectorAll('.bento-item');
+    bentoItems.forEach((item, index) => {
+      item.style.animationDelay = `${index * 0.1}s`;
+    });
+  </script>
+</body>
+
+</html>
